@@ -18,3 +18,5 @@ package-lock.json
 .claude
 .specify
 specs
+
+.env
