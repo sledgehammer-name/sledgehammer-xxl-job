@@ -37,3 +37,11 @@ A forced termination or power outage may require manual recovery.
 Database passwords and executor tokens must come from external server
 configuration or environment variables. Never commit real credentials.
 JAR rollback does not roll back database changes or external configuration.
+
+## Git checkout on this server
+
+Use Pipeline script from SCM with lightweight checkout disabled. Set the Git
+refspec to `+refs/heads/main:refs/remotes/origin/main`, honor the refspec on
+initial clone, disable tag fetching, and enable a shallow clone of depth 1.
+The pipeline preserves `.git` between builds and removes untracked build
+outputs after checkout. GitHub remains the source of the selected revision.

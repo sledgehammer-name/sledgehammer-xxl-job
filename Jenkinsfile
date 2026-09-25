@@ -15,10 +15,10 @@ pipeline {
     stages {
         stage('Checkout main') {
             steps {
-                deleteDir()
                 retry(3) {
                     checkout scm
                 }
+                sh 'git clean -fdx'
                 sh 'git log -1 --format="%h %s"'
             }
         }
