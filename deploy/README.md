@@ -45,3 +45,16 @@ refspec to `+refs/heads/main:refs/remotes/origin/main`, honor the refspec on
 initial clone, disable tag fetching, and enable a shallow clone of depth 1.
 The pipeline preserves `.git` between builds and removes untracked build
 outputs after checkout. GitHub remains the source of the selected revision.
+
+## Jenkins plugins
+
+Install the complete **Pipeline** plugin (`workflow-aggregator`) and **Git**.
+Pipeline must include Declarative, Basic Steps, Nodes and Processes, and
+Durable Task; merely having Pipeline: Job installed is insufficient. If the
+console reports `No such DSL method 'pipeline'`, check plugin loading before
+changing the Jenkinsfile.
+
+Use `https://updates.jenkins.io/update-center.json` as the update site.
+An old mirror returning HTTP 404 cannot provide a reliable plugin catalog.
+Refresh Available plugins after saving the update site and verify each
+dependency installed successfully. Restart Jenkins while idle if required.
