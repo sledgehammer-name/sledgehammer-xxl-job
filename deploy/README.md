@@ -21,7 +21,12 @@ Before the first deployment, an administrator must prepare:
 - `/opt/xxl-job-admin/releases`, writable by `jenkins`.
 - `/usr/local/bin/deploy-xxl-job-admin`, installed from the script in this directory.
 - Permission for `jenkins` to restart/stop only `xxl-job-admin` through sudo.
-- A writable application log directory matching the Logback configuration.
+- `/etc/xxl-job-admin/logback.xml`, installed from `deploy/logback.xml`, owned by `root:xxljob`, mode `0640`.
+- `/var/log/xxl-job-admin`, owned by `xxljob:xxljob`, mode `0750`.
+
+The service selects the external Logback file with a JVM property so it is
+available before Spring initializes. This avoids the packaged `logback.xml`
+attempting to open a log file owned by the previous launch user.
 
 Jenkins checks `main` every two minutes and publishes versioned JARs. The
 application listens on 9020. Health checks use 127.0.0.1:19020/actuator/health.

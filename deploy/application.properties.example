@@ -23,3 +23,6 @@ xxl-sso.client.excluded.paths=/actuator/health
 
 # Mail alerts are not configured in this example.
 # Add real spring.mail.* settings if alerts are required.
+
+# Load Spring logging from the same file selected during JVM startup.
+logging.config=file:/etc/xxl-job-admin/logback.xml

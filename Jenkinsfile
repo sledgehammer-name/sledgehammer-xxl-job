@@ -16,7 +16,9 @@ pipeline {
         stage('Checkout main') {
             steps {
                 deleteDir()
-                checkout scm
+                retry(3) {
+                    checkout scm
+                }
                 sh 'git log -1 --format="%h %s"'
             }
         }
