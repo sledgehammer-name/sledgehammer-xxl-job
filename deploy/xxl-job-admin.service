@@ -1,0 +1,19 @@
+[Unit]
+Description=XXL-JOB Admin
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=xxljob
+Group=xxljob
+WorkingDirectory=/opt/xxl-job-admin
+ExecStart=/usr/lib/jvm/java-21-openjdk-amd64/bin/java -Xms256m -Xmx512m -jar /opt/xxl-job-admin/current.jar --spring.config.additional-location=file:/etc/xxl-job-admin/application.properties
+Restart=on-failure
+RestartSec=5
+SuccessExitStatus=143
+TimeoutStopSec=60
+UMask=0027
+
+[Install]
+WantedBy=multi-user.target

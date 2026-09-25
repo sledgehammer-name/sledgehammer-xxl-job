@@ -1,0 +1,25 @@
+# Copy to /etc/xxl-job-admin/application.properties and replace placeholders.
+server.port=9020
+server.address=0.0.0.0
+server.servlet.context-path=/
+
+# Assumes MySQL is on this machine. Adapt host and port if necessary.
+spring.datasource.url=jdbc:mysql://127.0.0.1:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+spring.datasource.username=xxljob
+spring.datasource.password=REPLACE_WITH_NEW_DATABASE_PASSWORD
+
+# Keep the token consistent with executor configuration.
+xxl.job.accessToken=REPLACE_WITH_NEW_EXECUTOR_TOKEN
+
+# Keep management endpoint local; business UI uses 9020.
+management.server.port=19020
+management.server.address=127.0.0.1
+management.server.base-path=/
+management.endpoints.web.base-path=/actuator
+management.endpoints.web.exposure.include=health
+management.endpoint.health.show-details=never
+management.health.mail.enabled=false
+xxl-sso.client.excluded.paths=/actuator/health
+
+# Mail alerts are not configured in this example.
+# Add real spring.mail.* settings if alerts are required.
